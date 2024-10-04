@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rbji7aslwmkc"
-path="res://.godot/imported/clouds.png-c81b5597085abfd5a819dea34319a9e8.ctex"
+path="res://.godot/imported/clouds.png-2e747a6d9e3e923a16aa7472d160468f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Backgrounds/Desert/clouds.png"
-dest_files=["res://.godot/imported/clouds.png-c81b5597085abfd5a819dea34319a9e8.ctex"]
+source_file="res://assets/SpaceshipShooterGodot/Backgrounds/Desert/clouds.png"
+dest_files=["res://.godot/imported/clouds.png-2e747a6d9e3e923a16aa7472d160468f.ctex"]
 
 [params]
 

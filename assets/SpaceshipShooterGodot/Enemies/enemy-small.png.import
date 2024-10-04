@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddmpd1feix0fm"
-path="res://.godot/imported/enemy-small.png-b5d1c19a4fa613961f4701ab1466da64.ctex"
+path="res://.godot/imported/enemy-small.png-30b2f8a4550e1ceaba7cfa5f89db5468.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/enemy-small.png"
-dest_files=["res://.godot/imported/enemy-small.png-b5d1c19a4fa613961f4701ab1466da64.ctex"]
+source_file="res://assets/SpaceshipShooterGodot/Enemies/enemy-small.png"
+dest_files=["res://.godot/imported/enemy-small.png-30b2f8a4550e1ceaba7cfa5f89db5468.ctex"]
 
 [params]
 
