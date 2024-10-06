@@ -1,19 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://bse1t7tbln664"]
+[gd_scene load_steps=5 format=3 uid="uid://bse1t7tbln664"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_ru8e1"]
 [ext_resource type="PackedScene" uid="uid://oxo8kp4hfwfw" path="res://scenes/Player.tscn" id="2_giy8q"]
+[ext_resource type="Texture2D" uid="uid://dfrxi0nn6dfbf" path="res://assets/SpaceshipShooterGodot/Backgrounds/Desert/desert-backgorund.png" id="2_lwef2"]
 [ext_resource type="PackedScene" uid="uid://d2xwtq5npoly3" path="res://scenes/enemy.tscn" id="4_rkjxu"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_ru8e1")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1111.0
+offset_bottom = 1303.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lwef2")
+
 [node name="Player" parent="." instance=ExtResource("2_giy8q")]
-position = Vector2(395, 860)
+position = Vector2(460, 839)
 
 [node name="spawn_point" type="Marker2D" parent="."]
-position = Vector2(472, 1092)
+position = Vector2(552, 1134)
 
 [node name="LaserContainer" type="Node2D" parent="."]
 
 [node name="Enemy" parent="." instance=ExtResource("4_rkjxu")]
-position = Vector2(140, 374)
+position = Vector2(372, 361)

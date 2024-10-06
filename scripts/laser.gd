@@ -11,7 +11,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	
 
 func _on_area_entered(area):
-	if area is Enemy:
-		area.die()
+	if area.has_method("enemy_health"):
+		area.enemy_health()
 		queue_free()
 	
+
+func _on_despawntimer_timeout():
+	queue_free()
