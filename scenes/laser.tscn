@@ -1,11 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0fdtxjm4bgfa"]
+[gd_scene load_steps=12 format=3 uid="uid://c0fdtxjm4bgfa"]
 
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_qmm1e"]
 [ext_resource type="Texture2D" uid="uid://qxwntmdsyqmv" path="res://assets/kenney_pixelshmup/Tiles/tile_0000.png" id="2_rs0f6"]
+[ext_resource type="Texture2D" uid="uid://cnfnybhgna2vy" path="res://assets/SpaceshipShooterGodot/MIsc/explosion.png" id="3_piwn0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1747"]
+atlas = ExtResource("2_rs0f6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0kyx"]
+atlas = ExtResource("3_piwn0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwee6"]
+atlas = ExtResource("3_piwn0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ivoc"]
+atlas = ExtResource("3_piwn0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lwiq"]
+atlas = ExtResource("3_piwn0")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4d3g"]
+atlas = ExtResource("3_piwn0")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sk6pr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1747")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0kyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwee6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ivoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lwiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4d3g")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5rbp"]
 radius = 8.0
-height = 96.0
+height = 46.0
 
 [node name="laser" type="Area2D"]
 position = Vector2(24, 10)
@@ -13,18 +69,18 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_qmm1e")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-1, 47)
-scale = Vector2(2.625, 5.875)
-texture = ExtResource("2_rs0f6")
+position = Vector2(0, 14)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_sk6pr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 46)
+position = Vector2(0, 14)
 shape = SubResource("CapsuleShape2D_b5rbp")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0, 109)
+position = Vector2(1, 47)
 scale = Vector2(0.8, 0.65)
 
 [node name="Despawntimer" type="Timer" parent="."]
