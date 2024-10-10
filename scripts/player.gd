@@ -25,8 +25,8 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 	#Clamp the player so that it wont exit the viewport
-	global_position.x = clamp(global_position.x, 10, 1000)
-	global_position.y = clamp(global_position.y, 10, 1200)
+	global_position.x = clamp(global_position.x, 10, 950)
+	global_position.y = clamp(global_position.y, 10, 1150)
 
 
 func shoot():

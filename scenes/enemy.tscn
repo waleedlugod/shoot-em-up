@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2xwtq5npoly3"]
+[gd_scene load_steps=4 format=3 uid="uid://d2xwtq5npoly3"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_vwces"]
 [ext_resource type="Texture2D" uid="uid://dt24dn36io8t" path="res://assets/kenney_pixelshmup/Ships/ship_0015.png" id="1_xy1uc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_78gno"]
+radius = 1368.0
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
@@ -21,7 +24,27 @@ rotation = 3.1304
 scale = Vector2(0.67601, 0.602403)
 polygon = PackedVector2Array(92, 29, 115, 29, 128, 41, 135, 59, 144, 59, 185, 59, 207, 78, 208, 139, 182, 146, 181, 154, 142, 153, 143, 146, 137, 147, 137, 151, 130, 153, 130, 161, 124, 165, 124, 172, 86, 171, 84, 165, 79, 164, 78, 153, 73, 152, 72, 147, 66, 147, 65, 153, 26, 152, 26, 147, 8, 146, 6, 141, 0, 139, 1, 77, 6, 77, 8, 71, 13, 71, 15, 65, 19, 64, 21, 58, 62, 58, 65, 65, 70, 64, 72, 59, 79, 59, 79, 41, 84, 40, 86, 33, 92, 35, 92, 31, 93, 31)
 
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(156.366, 135.239)
+rotation = 3.1304
+scale = Vector2(0.67601, 0.602403)
+polygon = PackedVector2Array(92, 29, 115, 29, 128, 41, 135, 59, 144, 59, 185, 59, 207, 78, 208, 139, 182, 146, 181, 154, 142, 153, 143, 146, 137, 147, 137, 151, 130, 153, 130, 161, 124, 165, 124, 172, 86, 171, 84, 165, 79, 164, 78, 153, 73, 152, 72, 147, 66, 147, 65, 153, 26, 152, 26, 147, 8, 146, 6, 141, 0, 139, 1, 77, 6, 77, 8, 71, 13, 71, 15, 65, 19, 64, 21, 58, 62, 58, 65, 65, 70, 64, 72, 59, 79, 59, 79, 41, 84, 40, 86, 33, 92, 35, 92, 31, 93, 31)
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(86, 7)
 
+[node name="detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+position = Vector2(86, 74)
+shape = SubResource("CircleShape2D_78gno")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(79, 139)
+
+[node name="Shootspeed" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="timeout" from="Shootspeed" to="." method="_on_shootspeed_timeout"]
