@@ -8,11 +8,14 @@ signal laser_shot(laser_scene, location)
 
 var laser_scene = preload("res://scenes/laser.tscn")
 
+@onready var animated_sprite = $AnimatedSprite2D
+
 var shoot_cooldown := false
 var health = 3
+var is_exploded = false
 
 func _process(_delta):
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and not is_exploded:
 		if !shoot_cooldown:
 			shoot_cooldown = true
 			shoot()
@@ -22,7 +25,7 @@ func _process(_delta):
 func _physics_process(_delta):
 	var direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
 	velocity = direction * speed
-	move_and_slide()
+	if not is_exploded: move_and_slide()
 	
 	#Clamp the player so that it wont exit the viewport
 	global_position.x = clamp(global_position.x, 10, 950)
@@ -38,4 +41,7 @@ func die():
 func player_health():
 	health -= 1
 	if health == 0:
+		animated_sprite.play("explode")
+		is_exploded = true
+		await animated_sprite.animation_finished
 		queue_free()

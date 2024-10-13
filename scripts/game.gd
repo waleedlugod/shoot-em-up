@@ -26,7 +26,6 @@ func _process(_delta):
 			get_tree().reload_current_scene()
 			
 func _on_player_laser_shot(laser_scene, location):
-	print('shoot')
 	var laser = laser_scene.instantiate() 
 	laser.global_position = location
 	laser_container.add_child(laser)

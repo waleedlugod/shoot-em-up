@@ -1,22 +1,81 @@
-[gd_scene load_steps=3 format=3 uid="uid://oxo8kp4hfwfw"]
+[gd_scene load_steps=12 format=3 uid="uid://oxo8kp4hfwfw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_6kcey"]
 [ext_resource type="Texture2D" uid="uid://cajioluf6rxlr" path="res://assets/kenney_pixelshmup/Ships/ship_0000.png" id="1_vt10x"]
+[ext_resource type="Texture2D" uid="uid://cnfnybhgna2vy" path="res://assets/SpaceshipShooterGodot/MIsc/explosion.png" id="3_wgqiv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdj4w"]
+atlas = ExtResource("1_vt10x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbxnm"]
+atlas = ExtResource("3_wgqiv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trfsm"]
+atlas = ExtResource("3_wgqiv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjr1t"]
+atlas = ExtResource("3_wgqiv")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfuau"]
+atlas = ExtResource("3_wgqiv")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2ccr"]
+atlas = ExtResource("3_wgqiv")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpadw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdj4w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbxnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trfsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjr1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfuau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2ccr")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucbtn"]
+size = Vector2(175, 133.5)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_6kcey")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(86, 85)
-scale = Vector2(5.3125, 5.3125)
-texture = ExtResource("1_vt10x")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(18, 15)
-polygon = PackedVector2Array(1, 38, 20, 38, 27, 30, 44, 28, 59, 7, 77, 6, 91, 21, 109, 26, 117, 36, 136, 37, 151, 59, 154, 90, 151, 98, 98, 101, 88, 116, 82, 127, 83, 133, 60, 132, 47, 115, 43, 102, -9, 102, -15, 95, -16, 60)
-
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(86, 6)
+position = Vector2(88, 6)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(88, 88)
+scale = Vector2(5.5, 5.5)
+sprite_frames = SubResource("SpriteFrames_lpadw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(87.5, 88.25)
+shape = SubResource("RectangleShape2D_ucbtn")

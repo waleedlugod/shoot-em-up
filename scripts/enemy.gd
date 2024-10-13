@@ -4,7 +4,10 @@ extends Area2D
 @export var speed: float = 150
 var player = null
 var canshoot = true
+var is_exploded = false
 @export var health = 6
+
+@onready var animated_sprite = $AnimatedSprite2D
 
 var bullet = preload("res://scenes/enemy_bullet.tscn")
 signal laser_shot(laser_scene, location)
@@ -12,7 +15,7 @@ signal laser_shot(laser_scene, location)
 @onready var muzzle = $Muzzle
 
 func _physics_process(delta):
-	global_position.y += speed * delta
+	if not is_exploded: global_position.y += speed * delta
 
 func die():
 	queue_free()
@@ -20,7 +23,10 @@ func die():
 func _on_body_entered(body):
 	if body is Player:
 		body.player_health()
-		enemy_health()
+		animated_sprite.play("explode")
+		is_exploded = true
+		await animated_sprite.animation_finished
+		queue_free()
 	
 func enemy_health():
 	health -= 1
