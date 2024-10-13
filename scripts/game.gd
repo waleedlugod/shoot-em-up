@@ -26,6 +26,7 @@ func _process(_delta):
 			get_tree().reload_current_scene()
 			
 func _on_player_laser_shot(laser_scene, location):
+	print('shoot')
 	var laser = laser_scene.instantiate() 
 	laser.global_position = location
 	laser_container.add_child(laser)
@@ -34,4 +35,5 @@ func _on_player_laser_shot(laser_scene, location):
 func _on_enemy_spawn_timer_timeout():
 	var e = enemy_scenes.pick_random().instantiate()
 	e.global_position = Vector2(randf_range(50, 1000), -50)
+	e.laser_shot.connect(_on_player_laser_shot)
 	enemy_container.add_child(e)

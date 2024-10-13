@@ -1,11 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1gijn1yvibeu"]
+[gd_scene load_steps=11 format=3 uid="uid://c1gijn1yvibeu"]
 
 [ext_resource type="PackedScene" uid="uid://d2xwtq5npoly3" path="res://scenes/enemy.tscn" id="1_k15s5"]
 [ext_resource type="Texture2D" uid="uid://dxhtpericwjba" path="res://assets/kenney_pixelshmup/Ships/ship_0005.png" id="2_nbnnl"]
+[ext_resource type="Texture2D" uid="uid://cnfnybhgna2vy" path="res://assets/SpaceshipShooterGodot/MIsc/explosion.png" id="3_6dfxa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r76pc"]
+atlas = ExtResource("2_nbnnl")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_al071"]
+atlas = ExtResource("3_6dfxa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8nvr"]
+atlas = ExtResource("3_6dfxa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33kdv"]
+atlas = ExtResource("3_6dfxa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jik1c"]
+atlas = ExtResource("3_6dfxa")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmemw"]
+atlas = ExtResource("3_6dfxa")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fx0bi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r76pc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_al071")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8nvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33kdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jik1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmemw")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}]
 
 [node name="DiverEnemy" instance=ExtResource("1_k15s5")]
 speed = 400.0
 health = 2
 
-[node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_nbnnl")
+[node name="AnimatedSprite2D" parent="." index="3"]
+position = Vector2(85, 96)
+sprite_frames = SubResource("SpriteFrames_fx0bi")
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(85, 86)

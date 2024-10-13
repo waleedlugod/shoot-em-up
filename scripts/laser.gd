@@ -15,6 +15,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_area_entered(area):
 	if area.has_method("enemy_health"):
+		print(area.name)
 		animated_sprite.play("hit")
 		is_exploded = true
 		area.enemy_health()
