@@ -2,11 +2,10 @@ class_name Enemy
 extends Area2D
 
 @export var speed: float = 150
-var player = null
 var canshoot = true
 @export var health = 6
 
-var bullet = preload ("res://enemy_bullet.tscn")
+var bullet = preload ("res://scenes/enemy_bullet.tscn")
 
 @onready var muzzle = $Muzzle
 
@@ -17,24 +16,18 @@ func die():
 	queue_free()
 
 func _on_body_entered(body):
-	if body is Player:
+	if body.name == "Player":
 		body.player_health()
-		enemy_health()
+		queue_free()
 	
 func enemy_health():
 	health -= 1
 	if health == 0:
 		queue_free()
-
-
-func _on_detection_body_entered(body):
-	if body.is_in_group("player"):
-		player = body
 		
 func _on_shootspeed_timeout():
 	canshoot = true
-	if player != null:
-		shoot()
+	shoot()
 		
 func shoot():
 	if canshoot:
