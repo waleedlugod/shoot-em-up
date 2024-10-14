@@ -90,13 +90,14 @@ anchor_top = 0.742
 anchor_right = 0.496
 anchor_bottom = 0.742
 offset_left = -219.92
-offset_top = -43.7241
+offset_top = -81.724
 offset_right = 220.08
-offset_bottom = 43.2759
+offset_bottom = 70.276
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_sqvs3")
 theme_override_font_sizes/font_size = 64
-text = "RETRY"
+text = "RETRY 
+[Press R]"
 
 [connection signal="pressed" from="Panel/RestartButton" to="." method="_on_restart_button_pressed"]
