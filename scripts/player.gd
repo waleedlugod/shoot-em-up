@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal laser_shot(laser_scene, location)
+signal killed
 
 @export var speed = 300
 
@@ -36,6 +37,7 @@ func shoot():
 	laser_shot.emit(laser_scene, muzzle.global_position)
 	
 func die():
+	killed.emit()
 	queue_free()
 
 func player_health():
@@ -44,4 +46,4 @@ func player_health():
 		animated_sprite.play("explode")
 		is_exploded = true
 		await animated_sprite.animation_finished
-		queue_free()
+		die()  # Call die() after the animation finishes

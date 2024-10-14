@@ -1,6 +1,8 @@
 class_name Enemy 
 extends Area2D
 
+signal killed
+
 @export var speed: float = 150
 var player = null
 var canshoot = true
@@ -31,6 +33,7 @@ func _on_body_entered(body):
 func enemy_health():
 	health -= 1
 	if health == 0:
+		killed.emit()
 		queue_free()
 
 
