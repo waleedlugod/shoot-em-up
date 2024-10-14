@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://8oyd1frivj4b"]
+
+[ext_resource type="Script" path="res://scripts/enemy_bullet.gd" id="1_jbbff"]
+[ext_resource type="Texture2D" uid="uid://b085i4ygb8nbo" path="res://assets/kenney_pixelshmup/Tiles/tile_0012.png" id="2_kunhe"]
+[ext_resource type="Texture2D" uid="uid://cnfnybhgna2vy" path="res://assets/SpaceshipShooterGodot/MIsc/explosion.png" id="3_pkyrg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jswtn"]
+atlas = ExtResource("2_kunhe")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4er0r"]
+atlas = ExtResource("3_pkyrg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0mif"]
+atlas = ExtResource("3_pkyrg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg0kl"]
+atlas = ExtResource("3_pkyrg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgpan"]
+atlas = ExtResource("3_pkyrg")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wpsfn"]
+atlas = ExtResource("3_pkyrg")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kbrbv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jswtn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4er0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0mif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg0kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgpan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wpsfn")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvsq6"]
+size = Vector2(16, 24)
+
+[node name="enemy_bullet" type="Area2D"]
+position = Vector2(-27, -20)
+script = ExtResource("1_jbbff")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(27, 20)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_kbrbv")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(27, 20)
+shape = SubResource("RectangleShape2D_rvsq6")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(28, -5)
+
+[node name="Despawntimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Despawntimer" to="." method="_on_despawntimer_timeout"]
