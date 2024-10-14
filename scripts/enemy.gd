@@ -26,14 +26,10 @@ func _on_body_entered(body):
 	if body is Player:
 		body.player_health()
 		enemy_health()
-		if health > 0:
-			animated_sprite.play("hit")
-			await animated_sprite.animation_finished
-		else:
-			animated_sprite.play("explode")
-			is_exploded = true
-			await animated_sprite.animation_finished
-			queue_free()
+		animated_sprite.play("explode")
+		is_exploded = true
+		await animated_sprite.animation_finished
+		queue_free()
 	
 func enemy_health():
 	health -= 1
