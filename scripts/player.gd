@@ -12,7 +12,7 @@ var laser_scene = preload("res://scenes/laser.tscn")
 @onready var animated_sprite = $AnimatedSprite2D
 
 var shoot_cooldown := false
-var health = 3
+var health = 10
 var is_exploded = false
 
 func _process(_delta):
